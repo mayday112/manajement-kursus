@@ -1,6 +1,6 @@
 <x-layout>
 
-    <form action="{{ route('courses.update', $data['id']) }}" method="post" class="max-w-sm mx-auto">
+    <form action="{{ route('courses.update', $course['id']) }}" method="post" class="max-w-sm mx-auto">
         @csrf
         @method('PUT')
         {{-- Judul --}}
@@ -9,14 +9,14 @@
             <input type="text" name="judul" id="judul" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
              placeholder="Kursus Laravel 15..."
              autocomplete="off"
-             value="{{ $data['judul'] }}"
+             value="{{ $course['judul'] }}"
              required />
         </div>
         {{-- Deskripsi --}}
         <div class="mb-5">
             <label for="deskripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
             {{-- <input type="text" name="deskripsi" id="deskripsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lorem ipsum dolor sit amet....." autocomplete="off" required /> --}}
-            <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $data['deskripsi'] }}</textarea>
+            <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $course['deskripsi'] }}</textarea>
         </div>
         {{-- Durasi --}}
         <div class="mb-5">
@@ -25,7 +25,7 @@
           placeholder="masukkan dalam angka..."
           min="1" max="100"
           autocomplete="off"
-          value="{{ $data['durasi'] }}"
+          value="{{ $course['durasi'] }}"
           required />
         </div>
 

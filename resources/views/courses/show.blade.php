@@ -11,7 +11,7 @@
                     {{ $course['deskripsi'] }}
                 </p>
                 <div class="mt-3">
-                    {{ $datas->links() }}
+                    {{ $courses->links() }}
                 </div>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -31,20 +31,20 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($datas as $data)
+                @forelse ($courses as $course)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data['judul'] }}
+                            {{ $course['judul'] }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ Str::limit($data['deskripsi'],50) }}
+                            {{ Str::limit($course['deskripsi'],50) }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ $data['link'] }}" class="text-sm text-blue-600 hover:underline" target="_blank">{{ Str::limit($data['link'],20) }}</a>
+                            <a href="{{ $course['link'] }}" class="text-sm text-blue-600 hover:underline" target="_blank">{{ Str::limit($course['link'],20) }}</a>
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <form class="block w-full" onsubmit=' return confirm("Apakah anda Yakin?")' action="{{ route('materials.destroy', $data['id']) }}" method="POST">
-                                <a href="{{ route('materials.edit', $data['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
+                            <form class="block w-full" onsubmit=' return confirm("Apakah anda Yakin?")' action="{{ route('materials.destroy', $course['id']) }}" method="POST">
+                                <a href="{{ route('materials.edit', $course['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >

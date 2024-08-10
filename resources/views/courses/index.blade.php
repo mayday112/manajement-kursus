@@ -9,7 +9,7 @@
                     <a href="{{ route('courses.create') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">tambah ++</a>
                 </p>
                 <div class="mt-20">
-                    {{ $datas->links() }}
+                    {{ $courses->links() }}
                 </div>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -32,24 +32,24 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($datas as $data)
+                @forelse ($courses as $course)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data['judul'] }}
+                            {{ $course['judul'] }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ Str::limit($data['deskripsi'], 50) }}
+                            {{ Str::limit($course['deskripsi'], 50) }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $data['durasi'] . ' bulan' }}
+                            {{ $course['durasi'] . ' bulan' }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('courses.show', $data['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ke materi {{ $data['judul'] }}</a>
+                            <a href="{{ route('courses.show', $course['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ke materi {{ $course['judul'] }}</a>
                         </td>
                         <td class="px-6 py-4 text-right">
-                            {{-- <a href="{{ route('courses.destroy', $data['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick=' return confirm("Apakah anda Yakin?")'>Hapus</a> --}}
-                            <form class="block w-full" onsubmit=' return confirm("Apakah anda Yakin?")' action="{{ route('courses.destroy', $data['id']) }}" method="POST">
-                                <a href="{{ route('courses.edit', $data['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
+                            {{-- <a href="{{ route('courses.destroy', $course['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick=' return confirm("Apakah anda Yakin?")'>Hapus</a> --}}
+                            <form class="block w-full" onsubmit=' return confirm("Apakah anda Yakin?")' action="{{ route('courses.destroy', $course['id']) }}" method="POST">
+                                <a href="{{ route('courses.edit', $course['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >

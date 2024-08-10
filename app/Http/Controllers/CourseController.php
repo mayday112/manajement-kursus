@@ -18,8 +18,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $datas = Course::paginate(10);
-        return view('courses.index', ['datas' => $datas]);
+        $courses = Course::paginate(10);
+        return view('courses.index', ['courses' => $courses]);
     }
 
     /**
@@ -47,11 +47,11 @@ class CourseController extends Controller
                 'durasi' => ['required', 'integer']
             ]);
 
-            $data = $request->all();
+            $course = $request->all();
 
-            $data['slug'] = Str::slug($data['judul']. '-' . Str::lower(Str::random(5)));
+            $course['slug'] = Str::slug($course['judul']. '-' . Str::lower(Str::random(5)));
 
-            $post = Course::create($data);
+            $post = Course::create($course);
 
             if($post){
                 //redirect dengan pesan sukses
@@ -69,31 +69,31 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Course
      * @return \Illuminate\Http\Response
      */
     public function show(Course  $course)
     {
-        $datas = Material::where('course_id', '=', $course['id'])->paginate(5) ;
-        return view('courses.show', ['course' => $course ,'datas' => $datas]);
+        $courses = Material::where('course_id', '=', $course['id'])->paginate(5) ;
+        return view('courses.show', ['course' => $course ,'courses' => $courses]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Course
      * @return \Illuminate\Http\Response
      */
     public function edit(Course $course)
     {
-        return view('courses.edit', ['data' => $course]);
+        return view('courses.edit', ['course' => $course]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Course
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Course $course)
@@ -105,11 +105,11 @@ class CourseController extends Controller
                 'durasi' => ['required', 'integer']
             ]);
 
-            $data = $request->all();
+            $newCourse = $request->all();
 
-            $data['slug'] = Str::slug($data['judul']. '-' . Str::lower(Str::random(5)));
+            $newCourse['slug'] = Str::slug($newCourse['judul']. '-' . Str::lower(Str::random(5)));
 
-            $post = $course->update($data);
+            $post = $course->update($newCourse);
 
             if($post){
                 //redirect dengan pesan sukses
@@ -127,13 +127,16 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Course
      * @return \Illuminate\Http\Response
      */
     public function destroy(Course $course)
     {
-
-        $course->delete();
-        return redirect()->route('courses.index')->with('message', 'Success to delete');
+        try {
+            $course->delete();
+            return redirect()->route('courses.index')->with('message', 'Sukses menghapus');
+        } catch (\Throwable $th) {
+            return redirect()->route('courses.index')->with('error', 'Gagal menghapus');
+        }
     }
 }
