@@ -16,7 +16,6 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        //
         $datas = Material::orderBy('course_id', 'asc')->paginate(10);
         return view('materials.index', ['datas' => $datas]);
     }
@@ -41,7 +40,6 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         try {
-            //code...
             $this->validate($request, [
                 'judul' => ['required', 'max:50'],
                 'deskripsi' => ['required', 'max:500'],
@@ -50,22 +48,12 @@ class MaterialController extends Controller
             ]);
 
             $data = $request->all();
-
             $data['slug'] = Str::slug($data['judul']. '-' . Str::lower(Str::random(5)));
+            Material::create($data);
 
-            $post = Material::create($data);
-
-            if($post){
-                //redirect dengan pesan sukses
-                return redirect()->route('materials.index')->with(['success' => 'Data Berhasil Disimpan!']);
-            }else{
-                //redirect dengan pesan error
-                return redirect()->route('materials.index')->with(['error' => 'Data Gagal Disimpan!']);
-            }
-
+            return redirect()->route('materials.index');
         } catch (\Exception $e) {
-            //throw $th;
-            return redirect()->route('materials.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('materials.index');
         }
 
     }
@@ -103,7 +91,6 @@ class MaterialController extends Controller
     public function update(Request $request, Material $material)
     {
         try {
-            //code...
             $this->validate($request, [
                 'judul' => ['required', 'max:50'],
                 'deskripsi' => ['required', 'max:500'],
@@ -112,22 +99,12 @@ class MaterialController extends Controller
             ]);
 
             $data = $request->all();
-
             $data['slug'] = Str::slug($data['judul']. '-' . Str::lower(Str::random(5)));
+            $material->update($data);
 
-            $post = $material->update($data);
-
-            if($post){
-                //redirect dengan pesan sukses
-                return redirect()->route('materials.index')->with(['success' => 'Data Berhasil Disimpan!']);
-            }else{
-                //redirect dengan pesan error
-                return redirect()->route('materials.index')->with(['error' => 'Data Gagal Disimpan!']);
-            }
-
+            return redirect()->route('materials.index');
         } catch (\Exception $e) {
-            //throw $th;
-            return redirect()->route('materials.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('materials.index');
         }
     }
 
@@ -139,9 +116,11 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        $material->delete();
-        // $delete = $material->delete();
-
-        return redirect()->route('materials.index');
+        try {
+            $material->delete();
+            return redirect()->route('materials.index');
+        } catch (\Throwable $th) {
+            return redirect()->route('materials.index');
+        }
     }
 }

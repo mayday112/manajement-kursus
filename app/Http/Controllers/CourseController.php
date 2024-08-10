@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CourseRequest;
-use Exception;
+
 use App\Models\Course;
 use App\Models\Material;
 use Illuminate\Support\Str;
@@ -48,21 +47,12 @@ class CourseController extends Controller
             ]);
 
             $course = $request->all();
-
             $course['slug'] = Str::slug($course['judul']. '-' . Str::lower(Str::random(5)));
+            Course::create($course);
 
-            $post = Course::create($course);
-
-            if($post){
-                //redirect dengan pesan sukses
-                return redirect()->route('courses.index')->with(['success' => 'Data Berhasil Disimpan!']);
-            }else{
-                //redirect dengan pesan error
-                return redirect()->route('courses.index')->with(['error' => 'Data Gagal Disimpan!']);
-            }
-
+            return redirect()->route('courses.index');
         } catch (\Exception $th) {
-            return redirect()->route('courses.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('courses.index');
         }
     }
 
@@ -106,21 +96,13 @@ class CourseController extends Controller
             ]);
 
             $newCourse = $request->all();
-
             $newCourse['slug'] = Str::slug($newCourse['judul']. '-' . Str::lower(Str::random(5)));
+            $course->update($newCourse);
 
-            $post = $course->update($newCourse);
 
-            if($post){
-                //redirect dengan pesan sukses
-                return redirect()->route('courses.index')->with(['success' => 'Data Berhasil Disimpan!']);
-            }else{
-                //redirect dengan pesan error
-                return redirect()->route('courses.index')->with(['error' => 'Data Gagal Disimpan!']);
-            }
-
+            return redirect()->route('courses.index');
         } catch (\Exception $th) {
-            return redirect()->route('courses.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('courses.index');
         }
     }
 
@@ -134,9 +116,9 @@ class CourseController extends Controller
     {
         try {
             $course->delete();
-            return redirect()->route('courses.index')->with('message', 'Sukses menghapus');
+            return redirect()->route('courses.index');
         } catch (\Throwable $th) {
-            return redirect()->route('courses.index')->with('error', 'Gagal menghapus');
+            return redirect()->route('courses.index');
         }
     }
 }
