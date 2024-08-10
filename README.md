@@ -1,3 +1,5 @@
+Project ini menggunakan framework laravel 9.5
+
 Tampilan Landing page :
 ![image](https://github.com/user-attachments/assets/6c7d86ba-2cf6-44c7-ad4a-b16253f46a3b)
 
