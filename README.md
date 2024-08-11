@@ -10,7 +10,7 @@ Tampilan form edit course :
 ![image](https://github.com/user-attachments/assets/0c453e64-c722-4d40-a94c-5593990d8ba4)
 
 Tampilan materi berdasarkan jenis course :
-![image](https://github.com/user-attachments/assets/1422bb98-567b-495e-8032-615f2540feb9)
+![image](https://github.com/user-attachments/assets/be8ee9de-077d-46c7-b401-7ed1aba2094c)
 
 Tampilan semua materi :
 ![image](https://github.com/user-attachments/assets/e2394e4c-2b60-4702-ad6e-6164861f4125)
