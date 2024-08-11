@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CourseController::class, 'index']);
 
 Route::get('/material/create/{course:slug}', function (Course $course){
-    return view('materials.create', ['course_data' => $course, 'courses' => Course::all()]);
+    return view('materials.create', ['course_id' => $course['id'], 'courses' => Course::all()]);
 });
 
 Route::resource('courses', CourseController::class);
