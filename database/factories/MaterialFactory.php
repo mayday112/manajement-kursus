@@ -22,7 +22,7 @@ class MaterialFactory extends Factory
             'judul' => fake()->words(3, true),
             'slug' => Str::slug(fake()->sentence()),
             'deskripsi' => fake()->text(),
-            'link' => 'https://drive.google.com/file/d/1qPDKMS9QmpztyjxHDXlNJSAg2A5XUZVC/view',
+            'link_embed' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/bVsyHTDANNY?si=1ctay382mPQJWjgu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
             'course_id' => Course::factory()
         ];
     }

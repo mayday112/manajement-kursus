@@ -17,13 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CourseController::class, 'index']);
-// Route::get('/courses/{course:id}', function(Course $course){
-//     $datas = $course->materials();
-//     dd($course);
-//     return view('materials.index', ['datas' => $datas]);
-// });
 
-// Route::get('/{course:slug}/materials', [CourseController::class, 'show']);
+Route::get('/material/create/{course:slug}', function (Course $course){
+    return view('materials.create', ['course_data' => $course, 'courses' => Course::all()]);
+});
 
 Route::resource('courses', CourseController::class);
 Route::resource('materials', MaterialController::class);

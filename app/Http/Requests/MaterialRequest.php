@@ -26,7 +26,7 @@ class MaterialRequest extends FormRequest
         return [
             'judul' => 'required|max:50',
             'deskripsi' => 'required|max:500',
-            'link' => 'active_url'
+            'link_embed' => 'active_url'
         ];
     }
 }

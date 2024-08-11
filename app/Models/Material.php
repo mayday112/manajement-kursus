@@ -14,7 +14,7 @@ class Material extends Model
         'judul',
         'slug',
         'deskripsi',
-        'link',
+        'link_embed',
         'course_id'
     ];
 

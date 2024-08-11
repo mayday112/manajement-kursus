@@ -9,7 +9,7 @@
                     <a href="{{ route('materials.create') }}" class="text-white float-end bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">tambah ++</a>
                 </p>
                 <div class="mt-20">
-                    {{ $datas->links() }}
+                    {{ $materials->links() }}
                 </div>
             </caption>
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -24,7 +24,7 @@
                         Deskripsi
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        link
+                        link_embed
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Aksi
@@ -32,23 +32,23 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($datas as $data)
+                @forelse ($materials as $material)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data['judul'] }}
+                            {{ $material['judul'] }}
                         </th>
                         <th>
-                            {{ $data->course->judul }}
+                            {{ $material->course->judul }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ Str::limit($data['deskripsi'],50) }}
+                            {{ Str::limit($material['deskripsi'],50) }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ $data['link'] }}" class="text-sm text-blue-600 hover:underline" target="_blank">{{ Str::limit($data['link'],20) }}</a>
+                            {{ Str::limit($material['link_embed'],20) }}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <form class="block w-full" onsubmit=' return confirm("Apakah anda Yakin?")' action="{{ route('materials.destroy', $data['id']) }}" method="POST">
-                                <a href="{{ route('materials.edit', $data['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
+                            <form class="block w-full" onsubmit=' return confirm("Apakah anda Yakin?")' action="{{ route('materials.destroy', $material['id']) }}" method="POST">
+                                <a href="{{ route('materials.edit', $material['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >

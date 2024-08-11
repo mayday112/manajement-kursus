@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('slug')->unique();
             $table->string('deskripsi');
-            $table->string('link');
+            $table->text('link_embed');
 
             $table->foreignId('course_id')->constrained()
             ->onUpdate('cascade')

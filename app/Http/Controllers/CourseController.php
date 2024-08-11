@@ -64,8 +64,8 @@ class CourseController extends Controller
      */
     public function show(Course  $course)
     {
-        $courses = Material::where('course_id', '=', $course['id'])->paginate(5) ;
-        return view('courses.show', ['course' => $course ,'courses' => $courses]);
+        $materials = Material::where('course_id', '=', $course['id'])->paginate(5) ;
+        return view('courses.show', ['course' => $course ,'materials' => $materials]);
     }
 
     /**

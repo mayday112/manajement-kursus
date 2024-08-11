@@ -6,14 +6,23 @@
                 <p class="my-1 text-sm font-normal text-gray-500  dark:text-gray-400">
                     <a href="{{ route('courses.index') }}" class="text-blue-600 text-sm hover:underline ">&laquo; kembali ke course</a>
                 </p>
-                Materi : {{ $course['judul'] }}
-                <p class="text-base font-semibold mt-1 text-gray-500">
-                    {{ $course['deskripsi'] }}
-                </p>
-                <div class="mt-3">
-                    {{ $courses->links() }}
+                <div class="grid grid-rows-1 grid-flow-col">
+                    <div class="flex flex-col">
+                        <span>
+                            Materi : {{ $course['judul'] }}
+                        </span>
+                        <span class="text-base font-semibold mt-1 text-gray-500">
+                            {{ $course['deskripsi'] }}
+                        </span>
+                    </div>                   
+                    <a href="/material/create/{{ $course['slug'] }}" class="text-white justify-self-end bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">tambah ++</a>
+                </div>
+                
+                <div class="mt-5">
+                    {{ $materials->links() }}
                 </div>
             </caption>
+
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
@@ -23,7 +32,7 @@
                         Deskripsi
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        link
+                        link_embed
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Aksi
@@ -31,20 +40,20 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($courses as $course)
+                @forelse ($materials as $material)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $course['judul'] }}
+                            {{ $material['judul'] }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ Str::limit($course['deskripsi'],50) }}
+                            {{ Str::limit($material['deskripsi'],50) }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ $course['link'] }}" class="text-sm text-blue-600 hover:underline" target="_blank">{{ Str::limit($course['link'],20) }}</a>
+                            {{ Str::limit($material['link_embed'],20) }}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <form class="block w-full" onsubmit=' return confirm("Apakah anda Yakin?")' action="{{ route('materials.destroy', $course['id']) }}" method="POST">
-                                <a href="{{ route('materials.edit', $course['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
+                            <form class="block w-full" onsubmit=' return confirm("Apakah anda Yakin?")' action="{{ route('materials.destroy', $material['id']) }}" method="POST">
+                                <a href="{{ route('materials.edit', $material['id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >Edit</a>
                                 @csrf
                                 @method('DELETE')
                                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" >

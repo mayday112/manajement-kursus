@@ -16,9 +16,11 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $datas = Material::orderBy('course_id', 'asc')->paginate(10);
-        return view('materials.index', ['datas' => $datas]);
+        $materials = Material::orderBy('course_id', 'asc')->paginate(10);
+        return view('materials.index', ['materials' => $materials]);
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +30,7 @@ class MaterialController extends Controller
     public function create()
     {
         $courses = Course::all();
-        return view('materials.create', ['courses' => $courses]);
+        return view('materials.create', ['course_id' => 1,'courses' => $courses]);
     }
 
     /**
@@ -43,7 +45,7 @@ class MaterialController extends Controller
             $this->validate($request, [
                 'judul' => ['required', 'max:50'],
                 'deskripsi' => ['required', 'max:500'],
-                'link' => ['required'],
+                'link_embed' => ['required'],
                 'course_id' => ['required']
             ]);
 
@@ -94,7 +96,7 @@ class MaterialController extends Controller
             $this->validate($request, [
                 'judul' => ['required', 'max:50'],
                 'deskripsi' => ['required', 'max:500'],
-                'link' => ['required'],
+                'link_embed' => ['required'],
                 'course_id' => ['required']
             ]);
 
