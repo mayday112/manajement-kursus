@@ -15,7 +15,6 @@
         {{-- Deskripsi --}}
         <div class="mb-5">
             <label for="deskripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
-            {{-- <input type="text" name="deskripsi" id="deskripsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lorem ipsum dolor sit amet....." autocomplete="off" required /> --}}
             <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $course['deskripsi'] }}</textarea>
         </div>
         {{-- Durasi --}}
@@ -27,6 +26,8 @@
           autocomplete="off"
           value="{{ $course['durasi'] }}"
           required />
+          <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Masukkan angka saja, contoh : 1, 2, atau 3...</p>
+          <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Durasi dalam bentuk bulan</p>
         </div>
 
         <a href="/" class="text-blue-600 text-sm hover:underline ">&laquo; kembali</a>
